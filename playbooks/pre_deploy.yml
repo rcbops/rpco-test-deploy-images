@@ -1,0 +1,35 @@
+---
+- hosts: hosts
+  remote_user: ubuntu
+  become: True
+  vars:
+    rpco_artifact_url: https://dc61f63876c1acf31f7b-b28e2b85e22a27f072118ea786afca3a.ssl.cf1.rackcdn.com
+    re_job_image: xenial_mnaio_no_artifacts
+    re_job_scenario: swift
+  tasks:
+    - name: Set rpc_release
+      shell: |
+        /opt/rpc-openstack/scripts/get-rpc_release.py -f /opt/rpc-openstack/playbooks/vars/rpc-release.yml
+      register: rpc_release
+    - name: Set url
+      set_fact:
+        rpco_image_manifest_url: "{{ rpco_artifact_url }}/{{ rpc_release.stdout }}-{{ re_job_image }}-{{ re_job_scenario }}/manifest.json"
+    - name: debug
+      debug:
+        msg: "{{ rpco_image_manifest_url }}"
+    - name: Run pre-deploy steps
+      shell: |
+        source /opt/rpc-openstack/scripts/functions.sh
+        source /opt/rpc-openstack/gating/mnaio_vars.sh
+        source bootstrap.sh
+        source ansible-env.rc
+        run_mnaio_playbook playbooks/setup-host.yml
+        run_mnaio_playbook playbooks/deploy-acng.yml
+        run_mnaio_playbook playbooks/deploy-pxe.yml
+        run_mnaio_playbook playbooks/deploy-dhcp.yml
+        export RPCO_IMAGE_MANIFEST_URL="{{ rpco_image_manifest_url }}"
+        run_mnaio_playbook playbooks/download-vms.yml -e manifest_url=${RPCO_IMAGE_MANIFEST_URL}
+        run_mnaio_playbook playbooks/deploy-vms.yml
+      args:
+        executable: /bin/bash
+        chdir: /opt/openstack-ansible-ops/multi-node-aio

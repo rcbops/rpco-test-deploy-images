@@ -1,0 +1,8 @@
+---
+- import_playbook: allocate_phobos.yml
+- import_playbook: install_packages.yml
+- import_playbook: install_pip.yml
+- import_playbook: install_pip_packages.yml
+- import_playbook: clone_rpc_openstack.yml
+- import_playbook: pre_deploy.yml
+- import_playbook: molecule_test_setup.yml

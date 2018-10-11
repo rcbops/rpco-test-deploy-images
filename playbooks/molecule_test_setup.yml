@@ -1,0 +1,21 @@
+---
+- hosts: hosts
+  user: ubuntu
+  become: True
+  tasks:
+    - name: Get rpc-openstack-system-tests
+      git:
+        repo: https://github.com/rcbops/rpc-openstack-system-tests.git
+        refspec: dev
+        dest: /home/ubuntu/sys-tests
+    - name: Set owner/group to ubuntu
+      file:
+        path: /home/ubuntu/sys-tests
+        owner: ubuntu
+        group: ubuntu
+        recurse: yes
+    - name: Create symlink to /root/
+      file:
+        src: /home/ubuntu/sys-tests
+        dest: /root/sys-tests
+        state: link

@@ -1,0 +1,14 @@
+---
+- hosts: hosts
+  remote_user: ubuntu
+  become: True
+  tasks:
+    - name: Clone rpc-openstack repo
+      git:
+        repo: https://github.com/rcbops/rpc-openstack
+        dest: /opt/rpc-openstack
+        version: "{{ branch }}"
+    - name: Clone openstack-ansible-ops repo
+      git:
+        repo: https://github.com/openstack/openstack-ansible-ops
+        dest: /opt/openstack-ansible-ops

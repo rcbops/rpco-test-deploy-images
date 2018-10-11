@@ -1,0 +1,9 @@
+- hosts: hosts
+  user: ubuntu
+  become: True
+  tasks:
+    - name: Pip package
+      pip:
+        name: "{{ item }}"
+      with_items:
+        - pyaml
