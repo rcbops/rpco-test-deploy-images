@@ -5,8 +5,14 @@ pre-existing images from the Rackspace CDN.
 It assumes that authorization credentials have already been loaded into the
 environment.
 
-The desired rpc-openstack branch to be used for the deploy **must** be entered
-as an ansible variable at the time the playbooks are executed.
+## Required variables
+These playbooks assume that the following variable are declared. These should
+be entered on the command-line.
+
+* **keyname**: The name of the Openstack ssh key you would like deployed to
+  the instance that is created on Phobos.
+* **branch**: The branch of the rpc-openstack repo to use for the deploy. This
+  is used to determine the release number to fetch from the CDN.
 
 ## Example usage
 The examples below assume that your current working directory is the same as
@@ -16,7 +22,7 @@ this README file.
 The primary use of the playbooks is to provision an instance on Phobos and
 deploy the specified rpc-openstack MNAIO environment to that instance.
 ```
-ansible-playbook playbooks/main.yml -e branch=queens
+ansible-playbook playbooks/main.yml -e keyname=mykey -e branch=queens
 ```
 
 ### Run on existing host

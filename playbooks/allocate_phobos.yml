@@ -4,7 +4,7 @@
   gather_facts: False
 
   vars:
-    keyname: "jrd-mbpro"
+    keyname: "{{ keyname }}"
     inventory_path: "/Users/john1854/Documents/notes/mnaio_image_playbooks/inventory"
     boot_timeout: "{{ lookup('env', 'BOOT_TIMEOUT') | default(900, true) }}"
     instance_name: "test-image-{{ branch }}"
