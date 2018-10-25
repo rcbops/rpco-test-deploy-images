@@ -3,7 +3,7 @@
   remote_user: ubuntu
   become: True
   vars:
-    rpco_artifact_url: https://dc61f63876c1acf31f7b-b28e2b85e22a27f072118ea786afca3a.ssl.cf1.rackcdn.com
+    rpco_artifact_url: https://a5ce27333a8948d82738-b28e2b85e22a27f072118ea786afca3a.ssl.cf5.rackcdn.com/
     re_job_image: "{{ 'xenial_mnaio_loose_artifacts' if branch == 'newton' else 'xenial_mnaio_no_artifacts' }}"
     re_job_scenario: swift
   tasks:
