@@ -5,7 +5,7 @@
 
   vars:
     keyname: "{{ keyname }}"
-    inventory_path: "/Users/john1854/Documents/notes/mnaio_image_playbooks/inventory"
+    inventory_path: "{{ playbook_dir }}/../inventory"
     boot_timeout: "{{ lookup('env', 'BOOT_TIMEOUT') | default(900, true) }}"
     instance_name: "test-image-{{ branch }}"
     image: "baremetal-ubuntu-bionic"
