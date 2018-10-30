@@ -9,6 +9,10 @@
         path: "{{ inventory_path }}"
         state: directory
 
+    - name: Print instance name
+      debug:
+        msg: "Preparing to deploy - {{ instance_name }}"
+
     - name: Provision a cloud instance
       block:
         - name: Provision a cloud instance
