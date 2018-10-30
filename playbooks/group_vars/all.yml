@@ -1,0 +1,14 @@
+---
+# These variables are expected to be defined by the user at the time of
+# execution.
+vm_keyname: "{{ keyname | mandatory }}"
+vm_branch: "{{ branch | default('master') }}"
+vm_prefix: "{{ prefix | default(9000 |random(seed=inventory_hostname)) }}"
+
+# Instance creation variables
+inventory_path: "{{ playbook_dir }}/../inventory"
+boot_timeout: "{{ lookup('env', 'BOOT_TIMEOUT') | default(900, true) }}"
+instance_name: "{{ vm_prefix }}-image-{{ vm_branch }}"
+image: "baremetal-ubuntu-bionic"
+flavor: "ironic-storage-perf"
+network: "ironic"

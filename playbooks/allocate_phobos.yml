@@ -3,16 +3,7 @@
   connection: local
   gather_facts: False
 
-  vars:
-    keyname: "{{ keyname }}"
-    inventory_path: "{{ playbook_dir }}/../inventory"
-    boot_timeout: "{{ lookup('env', 'BOOT_TIMEOUT') | default(900, true) }}"
-    instance_name: "test-image-{{ branch }}"
-    image: "baremetal-ubuntu-bionic"
-    flavor: "ironic-storage-perf"
-    network: "ironic"
   tasks:
-
     - name: Create inventory directory
       file:
         path: "{{ inventory_path }}"
@@ -26,7 +17,7 @@
             flavor: "{{ flavor }}"
             state: present
             image: "{{ image }}"
-            key_name: "{{ keyname }}"
+            key_name: "{{ vm_keyname }}"
             userdata: |
               {%- raw -%}#!/bin/bash
               apt-get update

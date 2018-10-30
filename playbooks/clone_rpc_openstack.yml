@@ -7,7 +7,7 @@
       git:
         repo: https://github.com/rcbops/rpc-openstack
         dest: /opt/rpc-openstack
-        version: "{{ branch }}"
+        version: "{{ vm_branch }}"
     - name: Clone openstack-ansible-ops repo
       git:
         repo: https://github.com/openstack/openstack-ansible-ops
