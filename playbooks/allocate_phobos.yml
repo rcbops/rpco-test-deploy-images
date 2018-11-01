@@ -73,3 +73,6 @@
     - name: Show generated inventory
       debug:
         msg: "Generated inventory: {{ lookup('file', inventory_path+'/hosts')}}"
+
+    - name: sleep for 3 minutes for bootstrap script to complete
+      wait_for: timeout=180
