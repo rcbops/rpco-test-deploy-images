@@ -9,7 +9,7 @@
   tasks:
     - name: Get rpc_release (not newton)
       shell: |
-        /opt/rpc-openstack/scripts/get-rpc_release.py -f /opt/rpc-openstack/playbooks/vars/rpc-release.yml
+        /opt/rpc-openstack/scripts/get-rpc_release.py -f /opt/rpc-openstack/playbooks/vars/rpc-release.yml -r {{ vm_branch }}
       register: rpc_release_a
       when: vm_branch != 'newton'
 
