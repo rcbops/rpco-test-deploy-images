@@ -1,0 +1,9 @@
+---
+- hosts: hosts
+  user: ubuntu
+  become: True
+  tasks:
+    - name: Increase Default tmux Scrollback Buffer
+      copy:
+        content: "set-option -g history-limit 40000"
+        dest: ~/.tmux.conf

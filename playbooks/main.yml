@@ -6,3 +6,5 @@
 - import_playbook: clone_rpc_openstack.yml
 - import_playbook: pre_deploy.yml
 - import_playbook: molecule_test_setup.yml
+- import_playbook: configure_tmux.yml
+- import_playbook: setup_bash_aliases.yml

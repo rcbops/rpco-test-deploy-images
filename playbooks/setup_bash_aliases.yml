@@ -1,0 +1,17 @@
+---
+- hosts: hosts
+  user: ubuntu
+  become: True
+  tasks:
+    - name: Add Bash Aliases
+      lineinfile:
+        dest: "~/.bash_aliases"
+        create: yes
+        mode: 0644
+        line: 'alias {{ item.alias }}="{{ item.command }}"'
+        regexp: "^alias {{ item.alias }}="
+      with_items:
+        - alias: os
+          command: openstack --os-cloud default
+        - alias: zz
+          command: zigzag
