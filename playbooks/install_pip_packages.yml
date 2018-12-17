@@ -7,3 +7,5 @@
         name: "{{ item }}"
       with_items:
         - pyaml
+        - python-openstackclient
+        - rpc-zigzag
