@@ -9,3 +9,5 @@
       with_items:
         - git-core
         - screen
+        - libc6-dev
+        - python-dev
