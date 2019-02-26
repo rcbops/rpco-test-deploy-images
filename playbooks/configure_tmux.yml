@@ -1,8 +1,12 @@
 ---
 - hosts: hosts
   user: ubuntu
+  vars:
+    tmux_config: |
+      set-option -g history-limit 40000
+      set-option -g mode-keys vi
   tasks:
     - name: Increase Default tmux Scrollback Buffer
       copy:
-        content: "set-option -g history-limit 40000"
+        content: "{{ tmux_config }}"
         dest: ~/.tmux.conf
